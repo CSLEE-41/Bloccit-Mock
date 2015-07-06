@@ -18,9 +18,13 @@
 </div>
 <div class = "row">
   <div class = "col-md-8">
+    <% render @comments %>
+    <% if policy(Comment.new).create? %>
     <% @comments.each do |comment| %>
       <%= render partial: "comments/comment", locals: {comment: comment} %>
       <% end %>
       <%= render partial: "comments/form", locals: {post: @post, topic: @topic} %>
   </div>
+  <% end %>
 </div>
+
