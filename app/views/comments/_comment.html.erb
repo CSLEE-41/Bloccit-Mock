@@ -1,11 +1,15 @@
-<div class="Show comment">
-    <%= comment.body %>
-      <br>
-      <% if comment.user %>
-        <small>
-           submitted <%= time_ago_in_words(comment.created_at) %> ago by <em><%= comment.user.name %></em>
-        </small>
-      <hr>
-    <% end %>
+<div class="media">
+  <div class="media-left">
+    <%= image_tag(comment.user.avatar.small.url, class: "media-object") if comment.user.avatar? %>
+  </div>
+  <div class="media-body">
+    <small>
+      <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+      <% if policy(comment).destroy? %>
+        | <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
+      <% end %>
+    </small>
+    <p><%= comment.body %></p>
+  </div>
 </div>
     
