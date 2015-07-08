@@ -2,31 +2,33 @@ class CommentsController < ApplicationController
   
   def show
     @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id]) 
     @comment = @post.comment
   end
 
 
 
   def create
-    @topic = Topic.find(params[:topic_id])
+    #@topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
+    @topic = @post.topic
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
       
 
-
-   if @comment.save
+    if @comment.save
      flash[:notice] = "Comment successfully saved!"
-     redirect_to [@topic, @post]
-   else
+     redirect_to  [@topic, @post]
+    else
      flash[:error] = "Something went wrong saving the comment. Please try again."
      redirect_to [@topic, @post]
-   end
+    end
+  end
 
-   def destroy
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
+  def destroy
+    # @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
+    @topic = @post.topic
     @comment = @post.comments.find(params[:id])
 
     authorize @comment
@@ -39,7 +41,8 @@ class CommentsController < ApplicationController
       redirect_to [@topic, @post]
     end
   end 
- end
+
+
 
   private
 
@@ -47,4 +50,6 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body)
   end
 end
+
+
 
