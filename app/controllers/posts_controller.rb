@@ -24,7 +24,7 @@
      @post.topic = @topic
      authorize @post
 
-     if @post.save
+     if @post.save_with_initial_vote
        @post.create_vote
        flash[:notice] = "Post was saved."
        redirect_to [@topic, @post]
