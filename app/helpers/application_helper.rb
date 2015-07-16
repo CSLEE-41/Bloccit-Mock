@@ -8,6 +8,21 @@ module ApplicationHelper
      end
    end
 
+  def up_vote_link_classes(post)
+    vote = current.user.voted(post)
+    if vote && vote.up_vote?
+      "voted"
+    end
+  end
+
+
+  def down_vote_classes(post)
+    vote = current_user.voted(post)
+    if vote && vote.down_vote?
+      "voted"
+    end
+  end
+
   def markdown_to_html(markdown)
     renderer = Redcarpet::Render::HTML.new
     extensions = {fenced_code_blocks: true}
