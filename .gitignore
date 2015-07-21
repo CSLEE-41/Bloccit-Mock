@@ -21,3 +21,6 @@
 
 # CarrierWave image
 public/uploads
+
+# Ignore new relic
+/config/newrelic.yml

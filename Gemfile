@@ -8,6 +8,7 @@ gem 'rails', '4.2.1'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'puma'
 end
  
 group :development do
@@ -16,6 +17,8 @@ group :development do
   gem 'binding_of_caller'
 
   gem 'better_errors'
+
+  gem 'puma'
 end
 
 group :development, :test do 
@@ -83,4 +86,6 @@ gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
 
 gem 'newrelic_rpm'
+
+
 
