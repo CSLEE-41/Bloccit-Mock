@@ -32,9 +32,13 @@
 </div>
 <div class = "row">
   <div class = "col-md-8">
+    <div class='js-comments'>
     <% @comments.each do |comment| %>
       <%= render partial: "comments/comment", collection: @comments %>
       <% end %>
-      <%= render partial: "comments/form", locals: {post: @post, topic: @topic} %>
+    </div>
+    <div class='new-comment'>
+      <%= render "comments/form" %>
+    </div>
   </div>
 </div>
